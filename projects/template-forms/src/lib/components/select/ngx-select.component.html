@@ -1,0 +1,18 @@
+<span>
+  <span>{{prefix}}</span>
+  <ng-select [placeholder]="placeholder || ''"
+             [items]="options"
+             addTagText="Add"
+             [addTag]="canAdd"
+             bindLabel="label"
+             bindValue="value"
+             [closeOnSelect]="closeOnSelect || 'true'"
+             [name]="name"
+             [labelForId]="id"
+             (change)="onSelectEvent($event)"
+             [(ngModel)]="value">
+
+  </ng-select>
+  <span>{{suffix}}</span>
+</span>
+

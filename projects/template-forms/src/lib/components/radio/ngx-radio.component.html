@@ -1,0 +1,7 @@
+<ng-template ngFor [ngForOf]="options" let-option let-j="index">
+  <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" [(ngModel)]="value" [value]="option.value" [id]="option.id"
+           [name]="name" (input)="change($event)">
+    <label class="custom-control-label" [for]="option.id">{{ option.label }}</label>
+  </div>
+</ng-template>
