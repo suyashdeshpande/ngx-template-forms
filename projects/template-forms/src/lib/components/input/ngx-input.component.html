@@ -1,14 +1,22 @@
 <div>
   <span>{{prefix}}</span>
 
-  <input [type]="type"
-         class="form-control"
-         [placeholder]="placeholder"
-         (input)="change($event.target.value)"
-         [id]="id"
-         [name]="name"
-         [(ngModel)]="value">
+  <input class="form-control" [type]="type" [name]="name" [id]="id" [placeholder]="placeholder"
+         [(ngModel)]="value" (input)="change($event.target.value)" [gt]="10"
+         [rangeLength]="validatorConfig?.rangeLength?.value" [min]="validatorConfig?.min?.value"
+         [max]="validatorConfig?.max?.value" [lt]="validatorConfig?.lt?.value"
+         [required]="validatorConfig?.required?.value">
 
   <span>{{suffix}}</span>
 </div>
 <div>{{hint}}</div>
+
+<ng-template [ngIf]="validatorConfig" [ngClass]="validatorConfig?.class">
+  <ng-template ngFor [ngForOf]="Object.keys(validatorConfig)" let-key>
+    <div style="color: red;" *ngIf="form.form?.controls[name]?.touched &&
+                     form.form?.controls[name]?.errors &&
+                     form.form?.controls[name]?.errors[key]">
+      {{validatorConfig[key]?.message}}
+    </div>
+  </ng-template>
+</ng-template>

@@ -16,7 +16,10 @@ import {ControlContainer, NgForm} from '@angular/forms';
 export class NgxFormsComponent implements OnInit {
   @Input() fields: FormField[];
   @Input() formId = Math.random().toString(36).substring(7);
-  @Input() group: string;
+  // @Input() group: string;
+  @Input() form: any;
+  validatorKeys: any;
+  Object = Object;
 
   @Output() change: EventEmitter<any> = new EventEmitter<any>();
 
@@ -31,8 +34,11 @@ export class NgxFormsComponent implements OnInit {
   }
 
   valueChanged() {
+    console.log('form in ngx form component is ', this.form);
+    // console.log('form is ', this.form);
+
     this.change.emit();
-    console.log('ngx forms component fields are', this.fields);
+    // console.log('ngx forms component fields are', this.fields);
   }
 
 }

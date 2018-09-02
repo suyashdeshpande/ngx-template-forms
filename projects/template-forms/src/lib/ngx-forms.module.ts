@@ -47,7 +47,8 @@ import {NgxPasswordToggleModule} from 'ngx-password-toggle';
     // Modules
     CommonModule,
     FormsModule,
-    
+    CustomFormsModule,
+
     // Components
     NgxFormsComponent,
     NgxCheckboxComponent,

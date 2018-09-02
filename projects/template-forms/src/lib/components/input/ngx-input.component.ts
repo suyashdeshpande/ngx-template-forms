@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-input',
@@ -9,6 +9,10 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => NgxInputComponent),
       multi: true
+    },
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
     }
   ]
 })
@@ -23,6 +27,10 @@ export class NgxInputComponent implements OnChanges, ControlValueAccessor {
   @Input() id: string;
   @Input() value: string;
   @Input() hint: string;
+  @Input() validatorConfig: any;
+  @Input() form: any;
+
+  Object = Object;
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -54,5 +62,5 @@ export class NgxInputComponent implements OnChanges, ControlValueAccessor {
   }
 
   valueChanged = (_: any) => {
-  }
+  };
 }

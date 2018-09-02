@@ -14,7 +14,17 @@ export class AppComponent {
       placeholder: 'enter name',
       label: 'Name',
       value: '',
-      id: 'name'
+      id: 'name',
+      validators: {
+        gt: {
+          value: 10,
+          message: 'Should be greater than 10'
+        },
+        required: {
+          value: true,
+          message: 'It is required  '
+        }
+      }
     },
     {
       name: 'date',
