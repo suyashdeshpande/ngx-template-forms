@@ -3,7 +3,8 @@
             [placeholder]="placeholder"
             [id]="id"
             [name]="name"
-            (input)="change($event.target.value)"></textarea>
+            (input)="change($event.target.value)"
+            [attr.maxlength]="validatorConfig?.maxLength?.value"></textarea>
 </span>
 
 <ng-template [ngIf]="validatorConfig" [ngClass]="validatorConfig?.class">

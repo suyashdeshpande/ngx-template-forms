@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row">
   <ng-template ngFor [ngForOf]="fields" let-field let-i="index" [ngForTrackBy]="trackByFn">
     <ng-template [ngIf]="field.isVisible !== false">
       <div class="col-12 {{field.classNames}}">
@@ -22,27 +22,31 @@
               image
             </ng-template>
 
+            <!--Select-->
 
             <ng-template ngSwitchCase="select" [ngClass]="field.classNames || ''">
               <ngx-select [placeholder]="field.placeholder" [options]="field.options" [id]="field.id"
                           [name]="field.name" [(ngModel)]="field.value" [prefix]="field.prefix" [suffix]="field.suffix"
                           [closeOnSelect]="field.closeOnSelect" [canAdd]="field.canAdd"
-                          (selectChange)="valueChanged()"></ngx-select>
+                          (selectChange)="valueChanged()" [form]="form"
+                          [validatorConfig]="field.validators"></ngx-select>
             </ng-template>
 
 
             <ng-template ngSwitchCase="multiple-select" [ngClass]="field.classNames || ''">
               <ngx-multiple-select [placeholder]="field.placeholder" [options]="field.options" [id]="field.id"
                                    [name]="field.name" [(ngModel)]="field.value" [prefix]="field.prefix"
-                                   [suffix]="field.suffix"
-                                   [closeOnSelect]="field.closeOnSelect" [canAdd]="field.canAdd"
-                                   (selectChange)="valueChanged()"></ngx-multiple-select>
+                                   [suffix]="field.suffix" [closeOnSelect]="field.closeOnSelect"
+                                   [canAdd]="field.canAdd" (selectChange)="valueChanged()"
+                                   [form]="form" [validatorConfig]="form"></ngx-multiple-select>
             </ng-template>
 
+            <!--Textarea-->
 
             <ng-template ngSwitchCase="textarea" [ngClass]="field.classNames || ''">
               <ngx-textarea [placeholder]="field.placeholder" [name]="field.name" [id]="field.id"
-                            [(ngModel)]="field.value" (changeEmit)="valueChanged()"></ngx-textarea>
+                            [(ngModel)]="field.value" (changeEmit)="valueChanged()" [form]="form"
+                            [validatorConfig]="field.validators"></ngx-textarea>
             </ng-template>
 
 
@@ -65,58 +69,42 @@
               <!--(changeEmit)="valueChanged()"></ngx-radio>-->
             </ng-template>
 
+            <!--Date-->
+
             <ng-template ngSwitchCase="date" [ngClass]="field.classNames || ''">
               <ngx-date [placeholder]="field.placeholder" [name]="field.name" [id]="field.id"
                         [dateFormat]="'MMM DD, YYYY'" [(ngModel)]="field.value"
-                        (changeEmit)="valueChanged()"></ngx-date>
+                        (changeEmit)="valueChanged()" [form]="form" [validatorConfig]="field.validators"></ngx-date>
             </ng-template>
 
+            <!--Time-->
 
             <ng-template ngSwitchCase="time" [ngClass]="field.classNames || ''">
               <ngx-time [placeholder]="field.placeholder" [name]="field.name" [id]="field.id"
+                        [form]="form" [validatorConfig]="field.validators"
                         [timeFormat]="'hh:mm a'" [(ngModel)]="field.value" (changeEmit)="valueChanged()"></ngx-time>
             </ng-template>
 
+            <!--Password-->
+
             <ng-template ngSwitchCase="password" [ngClass]="field.classNames || ''">
-              <!--<ngx-password [placeholder]="field.placeholder" [name]="field.name" [id]="field.id"-->
-              <!--(changeEmit)="valueChanged()"-->
-              <!--[(ngModel)]="field.value"></ngx-password>-->
-              <span>
-                <!--<input type="password" passwordToggle [name]="field.name" [placeholder]="field.placeholder || ''"-->
-                       <!--[id]="field.id"-->
-                       <!--(input)="valueChanged()" [(ngModel)]="field.value" [gt]="field.validators?.gt?.value"-->
-                       <!--[rangeLength]="field.validators?.rangeLength?.value" [min]="field.validators?.min?.value"-->
-                       <!--[max]="field.validators?.max?.value" [lt]="field.validators?.lt?.value"-->
-                       <!--[required]="field.validators?.required?.value">-->
-                </span>
+              <ngx-password [placeholder]="field.placeholder" [name]="field.name" [id]="field.id"
+                            (changeEmit)="valueChanged()" [form]="form" [validatorConfig]="field.validators"
+                            [(ngModel)]="field.value"></ngx-password>
             </ng-template>
 
+            <!--Default-->
 
             <ng-template ngSwitchDefault [ngClass]="field.classNames || ''">
-              <ngx-input [name]="field.name" [id]="field.id" [placeholder]="field.placeholder || ''" [hint]="field.hint || ''"
+              <ngx-input [name]="field.name" [id]="field.id" [placeholder]="field.placeholder || ''"
+                         [hint]="field.hint || ''"
                          [prefix]="field.prefix || ''" [suffix]="field.suffix || ''" [type]="field.type"
                          [(ngModel)]="field.value" (changeEmit)="valueChanged()" [form]="form"
                          [validatorConfig]="field.validators"></ngx-input>
-
-              <!-- <input [type]="field.type" [name]="field.name" [id]="field.id" [placeholder]="field.placeholder"
-                     [(ngModel)]="field.value" (input)="valueChanged()" [gt]="field.validators?.gt?.value"
-                     [rangeLength]="field.validators?.rangeLength?.value" [min]="field.validators?.min?.value"
-                     [max]="field.validators?.max?.value" [lt]="field.validators?.lt?.value"
-                     [required]="field.validators?.required?.value"> -->
             </ng-template>
 
 
           </ng-container>
-
-          <!--<ng-template [ngIf]="field.validators" [ngClass]="field.validators?.class">-->
-          <!--<ng-template ngFor [ngForOf]="Object.keys(field.validators)" let-key>-->
-          <!--<div style="color: red;" *ngIf="form.form?.controls[field.name]?.touched &&-->
-          <!--form.form?.controls[field.name]?.errors &&-->
-          <!--form.form?.controls[field.name]?.errors[key]">-->
-          <!--{{field?.validators[key]?.message}}-->
-          <!--</div>-->
-          <!--</ng-template>-->
-          <!--</ng-template>-->
 
 
         </div>

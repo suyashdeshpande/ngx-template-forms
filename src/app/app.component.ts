@@ -32,7 +32,13 @@ export class AppComponent {
       placeholder: 'Enter Date',
       label: 'Date',
       value: '',
-      id: 'date'
+      id: 'date',
+      validators: {
+        minDate: {
+          value: 'Sep 05, 2018',
+          message: 'Min date is 5 Sept 2018'
+        }
+      }
     },
     {
       name: 'time',
@@ -40,7 +46,13 @@ export class AppComponent {
       placeholder: 'Enter Time',
       label: 'Time',
       value: '',
-      id: 'time'
+      id: 'time',
+      validators: {
+        minTime: {
+          value: '01:30 am',
+          message: 'Min time is 1:30 am'
+        }
+      }
     },
     {
       name: 'password',
@@ -48,7 +60,13 @@ export class AppComponent {
       placeholder: 'Enter Password',
       label: 'Password',
       value: '',
-      id: 'password'
+      id: 'password',
+      validators: {
+        required: {
+          value: true,
+          message: 'Password required'
+        }
+      }
     },
     {
       name: 'location',
@@ -68,7 +86,13 @@ export class AppComponent {
           label: 'Indore',
           value: 'indore'
         }
-      ]
+      ],
+      validators: {
+        required: {
+          value: true,
+          message: 'Single Location Required'
+        }
+      }
     },
     {
       name: 'multipleLocation',
@@ -88,7 +112,13 @@ export class AppComponent {
           label: 'Indore',
           value: 'indore'
         }
-      ]
+      ],
+      validators: {
+        required: {
+          value: true,
+          message: 'Single Location Required'
+        }
+      }
     },
     {
       name: 'description',
@@ -96,7 +126,13 @@ export class AppComponent {
       placeholder: 'Write here',
       label: 'Description',
       value: '',
-      id: 'description'
+      id: 'description',
+      validators: {
+        maxLength: {
+          value: 10,
+          message: 'Max length is 10'
+        }
+      }
     },
     {
       name: 'gender',
