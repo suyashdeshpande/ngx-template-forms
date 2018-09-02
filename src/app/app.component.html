@@ -1,5 +1,6 @@
 <form #f="ngForm" (ngSubmit)="submit(f)">
-<ngx-forms [formId]="formId" [(ngModel)]="fields" name="myForm" (change)="fieldsChanged()" [form]="f"></ngx-forms>
-  <ngx-input [name]="'address'" [validatorConfig]="addressValidatorConfig" [placeholder]="'Enter Address'" [form]="f"></ngx-input>
+  <ngx-forms [formId]="formId" [(ngModel)]="fields" name="myForm" (change)="fieldsChanged()" [form]="f"></ngx-forms>
+  <ngx-input [name]="'address'" [validatorConfig]="addressValidatorConfig" [placeholder]="'Enter Address'" [form]="f"
+             [(ngModel)]="value"></ngx-input>
   <button type="submit">Submit</button>
 </form>

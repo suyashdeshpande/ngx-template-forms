@@ -182,6 +182,7 @@ export class AppComponent {
       message: 'address is required'
     }
   };
+  value: ''
 
   submit(f: any) {
     Object.keys(f.form.controls).forEach(field => {
@@ -198,5 +199,6 @@ export class AppComponent {
 
   fieldsChanged() {
     console.log('app component fields changed', this.fields);
+    console.log('address fields changed', this.value);
   }
 }
