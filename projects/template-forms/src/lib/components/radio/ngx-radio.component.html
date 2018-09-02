@@ -1,7 +1,17 @@
 <ng-template ngFor [ngForOf]="options" let-option let-j="index">
   <div class="custom-control custom-radio">
     <input type="radio" class="custom-control-input" [(ngModel)]="value" [value]="option.value" [id]="option.id"
-           [name]="name" (input)="change($event)">
+           [name]="name" (change)="change($event)">
     <label class="custom-control-label" [for]="option.id">{{ option.label }}</label>
   </div>
+</ng-template>
+
+<ng-template [ngIf]="validatorConfig" [ngClass]="validatorConfig?.class">
+  <ng-template ngFor [ngForOf]="Object.keys(validatorConfig)" let-key>
+    <div style="color: red;" *ngIf="form.form?.controls[name]?.touched &&
+                     form.form?.controls[name]?.errors &&
+                     form.form?.controls[name]?.errors[key]">
+      {{validatorConfig[key]?.message}}
+    </div>
+  </ng-template>
 </ng-template>

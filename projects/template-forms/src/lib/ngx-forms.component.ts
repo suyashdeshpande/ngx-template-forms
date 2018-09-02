@@ -1,20 +1,27 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {FormField} from './interface/interface';
-import {ControlContainer, NgForm} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-forms',
   templateUrl: 'ngx-forms.component.html',
   styles: [],
-  viewProviders : [
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => NgxFormsComponent)
+    }
+  ],
+  viewProviders: [
     {
       provide: ControlContainer,
       useExisting: NgForm
     }
   ]
 })
-export class NgxFormsComponent implements OnInit {
-  @Input() fields: FormField[];
+export class NgxFormsComponent implements OnInit, ControlValueAccessor {
+  fields: FormField[];
   @Input() formId = Math.random().toString(36).substring(7);
   @Input() group: string;
   @Input() form: any;
@@ -36,9 +43,28 @@ export class NgxFormsComponent implements OnInit {
   valueChanged() {
     console.log('form in ngx form component is ', this.form);
     // console.log('form is ', this.form);
-
+    this.propChange(this.fields);
     this.change.emit();
     // console.log('ngx forms component fields are', this.fields);
   }
+
+  registerOnChange(fn: any): void {
+    this.propChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+  }
+
+  writeValue(obj: any): void {
+    if (obj !== undefined) {
+      this.fields = obj;
+    }
+  }
+
+  propChange = (_: any) => {
+  };
 
 }

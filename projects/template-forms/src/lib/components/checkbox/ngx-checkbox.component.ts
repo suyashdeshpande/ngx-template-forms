@@ -16,7 +16,7 @@ import {ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm} from 
       provide: ControlContainer,
       useExisting: NgForm
     }
-    ]
+  ]
 })
 
 export class NgxCheckboxComponent implements OnInit, ControlValueAccessor {
@@ -28,7 +28,11 @@ export class NgxCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() class: string;
   @Input() label: string;
   @Input() labelClass: string;
+  @Input() form: any;
+  @Input() validatorConfig: any;
   @Input() options: any;
+
+  Object = Object;
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();
 

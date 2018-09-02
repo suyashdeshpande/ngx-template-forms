@@ -12,11 +12,13 @@
 
           <ng-container [ngSwitch]="field.type">
 
+            <!--Html-->
 
             <ng-template ngSwitchCase="html">
               <div>{{field.content}}</div>
             </ng-template>
 
+            <!--Image-->
 
             <ng-template ngSwitchCase="image" [ngClass]="field.classNames || ''">
               image
@@ -32,13 +34,14 @@
                           [validatorConfig]="field.validators"></ngx-select>
             </ng-template>
 
+            <!--Multiple Select-->
 
             <ng-template ngSwitchCase="multiple-select" [ngClass]="field.classNames || ''">
               <ngx-multiple-select [placeholder]="field.placeholder" [options]="field.options" [id]="field.id"
                                    [name]="field.name" [(ngModel)]="field.value" [prefix]="field.prefix"
                                    [suffix]="field.suffix" [closeOnSelect]="field.closeOnSelect"
                                    [canAdd]="field.canAdd" (selectChange)="valueChanged()"
-                                   [form]="form" [validatorConfig]="form"></ngx-multiple-select>
+                                   [form]="form" [validatorConfig]="field.validators"></ngx-multiple-select>
             </ng-template>
 
             <!--Textarea-->
@@ -49,24 +52,17 @@
                             [validatorConfig]="field.validators"></ngx-textarea>
             </ng-template>
 
+            <!--Checkbox-->
 
             <ng-template ngSwitchCase="checkbox" [ngClass]="field.classNames || ''">
-              checkbox
+              <ngx-checkbox [form]="form" [validatorConfig]="field.validators" [options]="field.options"></ngx-checkbox>
             </ng-template>
 
+            <!--Radio-->
 
             <ng-template ngSwitchCase="radio" [ngClass]="field.classNames || ''">
-              <ng-template ngFor [ngForOf]="field.options" let-option let-j="index">
-
-                <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" [(ngModel)]="field.value" [value]="option.value"
-                         [id]="option.id"
-                         [name]="field.name" (input)="valueChanged($event, field)">
-                  <label class="custom-control-label" [for]="option.id">{{ option.label }}</label>
-                </div>
-              </ng-template>
-              <!--<ngx-radio [options]="field.options" [(ngModel)]="field.value" [name]="field.name"-->
-              <!--(changeEmit)="valueChanged()"></ngx-radio>-->
+              <ngx-radio [options]="field.options" [(ngModel)]="field.value" [name]="field.name"
+                         (changeEmit)="valueChanged()"></ngx-radio>
             </ng-template>
 
             <!--Date-->

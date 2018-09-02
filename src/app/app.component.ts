@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -153,10 +154,39 @@ export class AppComponent {
         }
       ]
     },
+    {
+      name: 'alphabets',
+      type: 'checkbox',
+      label: 'Alphabets',
+      value: '',
+      id: 'alpha',
+      options: [
+        {
+          id: 9,
+          label: 'A',
+          value: 'a',
+          name: 'A'
+        },
+        {
+          id: 10,
+          label: 'B',
+          value: 'b',
+          name: 'B'
+        }
+      ]
+    },
   ];
 
-  log(f: any) {
-    console.log('form is ', f);
+  submit(f: any) {
+    Object.keys(f.form.controls).forEach(field => {
+      const control = f.form.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      }
+    });
+    if (f.form.valid) {
+      console.log('form is ', f);
+    }
   }
 
   fieldsChanged() {

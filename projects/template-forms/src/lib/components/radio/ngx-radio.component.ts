@@ -27,8 +27,12 @@ export class NgxRadioComponent implements OnInit, ControlValueAccessor {
   @Input() class: string;
   @Input() id: string;
   @Input() options: any;
+  @Input() form: any;
+  @Input() validatorConfig: any;
 
-  @Input() value: string;
+  Object = Object;
+
+  value: string;
 
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();
