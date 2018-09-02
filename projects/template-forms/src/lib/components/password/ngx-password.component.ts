@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-password',
@@ -10,6 +10,12 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
       useExisting: forwardRef(() => NgxPasswordComponent),
       multi: true
     }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
+    }
   ]
 })
 
@@ -19,7 +25,11 @@ export class NgxPasswordComponent implements OnInit, ControlValueAccessor {
   @Input() class: string;
   @Input() id: string;
   @Input() name: string;
-  value: string = '';
+  value: any = '';
+  @Input() form: any;
+  @Input() validatorConfig: any;
+
+  Object = Object;
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -51,5 +61,5 @@ export class NgxPasswordComponent implements OnInit, ControlValueAccessor {
 
   propChange = (_: any) => {
 
-  }
+  };
 }

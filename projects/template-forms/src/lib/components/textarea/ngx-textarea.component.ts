@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-textarea',
@@ -10,6 +10,12 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
       multi: true,
       useExisting: forwardRef(() => NgxTextAreaComponent)
     }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
+    }
   ]
 })
 
@@ -18,7 +24,11 @@ export class NgxTextAreaComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() name: string;
   @Input() id: string;
+  @Input() form: any;
+  @Input() validatorConfig: any;
   value: string;
+
+  Object = Object;
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -49,6 +59,7 @@ export class NgxTextAreaComponent implements OnInit, ControlValueAccessor {
       this.value = obj;
     }
   }
+
   propChange = (_: any) => {
-  }
+  };
 }

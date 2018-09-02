@@ -16,7 +16,7 @@ import {ControlContainer, NgForm} from '@angular/forms';
 export class NgxFormsComponent implements OnInit {
   @Input() fields: FormField[];
   @Input() formId = Math.random().toString(36).substring(7);
-  // @Input() group: string;
+  @Input() group: string;
   @Input() form: any;
   validatorKeys: any;
   Object = Object;

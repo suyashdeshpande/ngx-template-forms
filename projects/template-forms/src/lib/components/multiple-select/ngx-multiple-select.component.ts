@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-multiple-select',
@@ -9,6 +9,12 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => NgxMultipleSelectComponent),
       multi: true
+    }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
     }
   ]
 })
@@ -25,6 +31,10 @@ export class NgxMultipleSelectComponent implements OnInit, ControlValueAccessor 
   @Input() canAdd: boolean;
   @Input() closeOnSelect: boolean;
   @Input() multiple: boolean;
+  @Input() form: any;
+  @Input() validatorConfig: any;
+
+  Object = Object;
 
   value: any;
 

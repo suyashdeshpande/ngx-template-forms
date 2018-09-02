@@ -5,5 +5,19 @@
          [dateFormat]="dateFormat"
          (onChange)="change($event)"
          [name]="name"
-         [(ngModel)]="value">
+         [(ngModel)]="value"
+         [required]="validatorConfig?.required?.value"
+         [minDate]="validatorConfig?.minDate?.value"
+         [maxDate]="validatorConfig?.maxDate?.value">
 </div>
+
+<ng-template [ngIf]="validatorConfig" [ngClass]="validatorConfig?.class">
+  <ng-template ngFor [ngForOf]="Object.keys(validatorConfig)" let-key>
+    <div style="color: red;" *ngIf="form.form?.controls[name]?.touched &&
+                     form.form?.controls[name]?.errors &&
+                     form.form?.controls[name]?.errors[key]">
+      {{validatorConfig[key]?.message}}
+    </div>
+  </ng-template>
+</ng-template>
+

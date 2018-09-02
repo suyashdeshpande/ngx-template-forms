@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 import {FormField} from '../../interface/interface';
 
 @Component({
@@ -10,6 +10,12 @@ import {FormField} from '../../interface/interface';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => NgxSelectComponent),
       multi: true
+    }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
     }
   ]
 })
@@ -24,6 +30,10 @@ export class NgxSelectComponent implements OnInit, ControlValueAccessor {
   @Input() options: any[];
   @Input() canAdd: boolean;
   @Input() closeOnSelect: boolean;
+  @Input() form: any;
+  @Input() validatorConfig: any;
+
+  Object = Object;
 
   value: string;
 

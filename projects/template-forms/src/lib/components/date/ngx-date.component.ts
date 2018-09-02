@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-date',
@@ -10,6 +10,12 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
       useExisting: forwardRef(() => NgxDateComponent),
       multi: true
     }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
+    }
   ]
 })
 
@@ -19,7 +25,11 @@ export class NgxDateComponent implements OnInit, ControlValueAccessor {
   @Input() dateFormat: string;
   @Input() id: string;
   @Input() placeholder: string;
+  @Input() validatorConfig: any;
+  @Input() form: any;
   value: any = '';
+
+  Object = Object;
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -53,5 +63,5 @@ export class NgxDateComponent implements OnInit, ControlValueAccessor {
   }
 
   propChange = (_: any) => {
-  }
+  };
 }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-time',
@@ -10,6 +10,12 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
       useExisting: forwardRef(() => NgxTimeComponent),
       multi: true
     }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
+    }
   ]
 })
 
@@ -19,6 +25,10 @@ export class NgxTimeComponent implements OnInit, ControlValueAccessor {
   @Input() timeFormat: string;
   @Input() id: string;
   @Input() placeholder: string;
+  @Input() form: any;
+  @Input() validatorConfig: any;
+
+  Object = Object;
   value: any = '';
 
   @Output() changeEmit: EventEmitter<any> = new EventEmitter<any>();

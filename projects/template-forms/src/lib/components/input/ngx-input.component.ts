@@ -9,7 +9,9 @@ import {ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm} from 
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => NgxInputComponent),
       multi: true
-    },
+    }
+  ],
+  viewProviders: [
     {
       provide: ControlContainer,
       useExisting: NgForm
@@ -25,7 +27,7 @@ export class NgxInputComponent implements OnChanges, ControlValueAccessor {
   @Input() type: string;
   @Input() name: string;
   @Input() id: string;
-  @Input() value: string;
+  value: string;
   @Input() hint: string;
   @Input() validatorConfig: any;
   @Input() form: any;

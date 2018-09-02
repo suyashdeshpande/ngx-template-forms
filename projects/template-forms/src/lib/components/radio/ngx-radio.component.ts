@@ -1,5 +1,5 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
 import {logger} from 'codelyzer/util/logger';
 import {log} from 'util';
 
@@ -11,6 +11,12 @@ import {log} from 'util';
       provide: NG_VALUE_ACCESSOR,
       multi: true,
       useExisting: forwardRef(() => NgxRadioComponent)
+    }
+  ],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: NgForm
     }
   ]
 })
