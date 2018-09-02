@@ -176,6 +176,12 @@ export class AppComponent {
       ]
     },
   ];
+  addressValidatorConfig = {
+    required: {
+      value: true,
+      message: 'address is required'
+    }
+  };
 
   submit(f: any) {
     Object.keys(f.form.controls).forEach(field => {
@@ -188,6 +194,7 @@ export class AppComponent {
       console.log('form is ', f);
     }
   }
+
 
   fieldsChanged() {
     console.log('app component fields changed', this.fields);
