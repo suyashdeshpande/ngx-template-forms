@@ -34,7 +34,7 @@
     "ngx-password-toggle": "^1.0.3",
     "rxjs": "^6.3.1",
     "timepicker": "^1.11.12",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.29"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",
